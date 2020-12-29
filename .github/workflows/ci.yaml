@@ -6,7 +6,7 @@ on:
     branches: [ master ]
   workflow_dispatch:
 jobs:
-  build:
+  build-linux:
     runs-on: ubuntu-latest
     steps:
       - name: Check out
@@ -22,7 +22,26 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: build
-          args: --release 
+          args: --release
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          path: target
+  build-macos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+      - name: Set up cargo
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+      - name: Build
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --release
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
