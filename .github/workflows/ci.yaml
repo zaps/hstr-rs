@@ -38,7 +38,7 @@ jobs:
           curl -LO http://ftp.gnu.org/pub/gnu/ncurses/ncurses-5.9.tar.gz
           tar zxf ncurses-5.9.tar.gz
           cd ncurses-5.9
-          ./configure
+          ./configure --prefix=/usr/local
           make install
       - name: Set up cargo
         uses: actions-rs/toolchain@v1
