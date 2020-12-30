@@ -32,16 +32,8 @@ jobs:
     steps:
       - name: Check out
         uses: actions/checkout@v2
-      - name: Install ncurses development libraries
-        run: |
-          cd /tmp
-          curl -LO http://ftp.gnu.org/pub/gnu/ncurses/ncurses-5.9.tar.gz
-          tar zxf ncurses-5.9.tar.gz
-          cd ncurses-5.9
-          curl -LO https://raw.githubusercontent.com/chef/omnibus-software/master/config/patches/ncurses/ncurses-5.9-gcc-5.patch
-          git apply ncurses-5.9-gcc-5.patch
-          ./configure --prefix=/usr/local
-          sudo make install
+      - name: Install ncurses
+        run: brew install ncurses
       - name: Set up cargo
         uses: actions-rs/toolchain@v1
         with:
