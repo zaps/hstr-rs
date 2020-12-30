@@ -38,6 +38,8 @@ jobs:
           curl -LO http://ftp.gnu.org/pub/gnu/ncurses/ncurses-5.9.tar.gz
           tar zxf ncurses-5.9.tar.gz
           cd ncurses-5.9
+          curl -LO https://raw.githubusercontent.com/chef/omnibus-software/master/config/patches/ncurses/ncurses-5.9-gcc-5.patch
+          git apply ncurses-5.9-gcc-5.patch
           ./configure --prefix=/usr/local
           sudo make install
       - name: Set up cargo
